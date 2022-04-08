@@ -18,3 +18,7 @@ def create():
   db.session.commit()
   return jsonify(toy.serialize()), 201
 
+@toys.route('/', methods=["GET"])
+def index():
+  toys = Toy.query.all()
+  return jsonify([toy.serialize() for toy in toys]), 201
